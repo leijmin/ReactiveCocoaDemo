@@ -1,0 +1,29 @@
+//
+//  ReactiveCocoa.pch
+//  ReactiveCocoaDemo
+//
+//  Created by lanren on 16/5/16.
+//  Copyright © 2016年 雷建民. All rights reserved.
+//
+
+#ifndef ReactiveCocoa_pch
+#define ReactiveCocoa_pch
+
+#define LISTURL @"http://api.douban.com/v2/movie/nowplaying?app_name=doubanmovie&client=e:iPhone4,1%7Cy:iPhoneOS_6.1%7Cs:mobile%7Cf:doubanmovie_2%7Cv:3.3.1%7Cm:PP_market%7Cudid:aa1b815b8a4d1e961347304e74b9f9593d95e1c5&alt=json&city=%E5%8C%97%E4%BA%ACversion=2&apikey=0df993c66c0c636e29ecbb5344252a4a"
+
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+#define URL(url) [NSURL URLWithString:url]
+#define ImageNamed(name) [UIImage imageNamed:name]
+#define string(str1,str2) [NSString stringWithFormat:@"%@%@",str1,str2]
+
+
+#import "AppDelegate.h"
+#import "UIImageView+WebCache.h"
+#import "JMRequest.h"
+#import "MJRefresh.h"
+#import "Masonry.h"
+#import "MJExtension.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
+
+#endif /* ReactiveCocoa_pch */
