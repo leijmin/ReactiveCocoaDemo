@@ -12,7 +12,7 @@
 
 @interface JMViewController ()
 
-@property (nonatomic, strong)  JMView *mainView;
+@property (nonatomic, strong)  JMView      *mainView;
 @property (nonatomic, strong)  JMViewModel *viewModel;
 
 @end
@@ -26,16 +26,19 @@
 
 
 #pragma mark - private
+
+//添加子视图
 - (void)jm_addSubviews
 {
     [self.view addSubview:self.mainView];
 }
-
+//导航栏标题
 - (void)jm_layoutNavigation
 {
     self.title = @"电影列表";
 }
 
+// 点击cell 回调
 - (void)jm_bindViewModel
 {
     @weakify(self);
@@ -43,10 +46,12 @@
         
         @strongify(self);
         ViewController *viewController = [[ViewController alloc]init];
+        viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [self.navigationController pushViewController:viewController animated:YES];
     }];
 }
 
+// 更新约束
 - (void)updateViewConstraints
 {
     WS(weakSelf)
@@ -60,7 +65,9 @@
     [super updateViewConstraints];
 }
 
-#pragma mark - layzLoad
+
+#pragma mark - layzLoad －－
+
 - (JMView *)mainView {
     
     if (!_mainView) {
@@ -70,6 +77,7 @@
     
     return _mainView;
 }
+
 
 - (JMViewModel *)viewModel {
     

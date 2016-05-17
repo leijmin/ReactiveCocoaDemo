@@ -62,21 +62,21 @@
                     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
                         @strongify(self);
                         
-                     [self.viewModel.nextPageCommand execute:nil];
+                        [self.viewModel.refreshDataCommand execute:nil];
                         
                     }];
                 }
-    
+                
                 break;
                 
-                case LSHeaderRefresh_HasNoMoreData:
+            case LSHeaderRefresh_HasNoMoreData:
                 
                 [self.tableView.mj_header endRefreshing];
                 self.tableView.mj_footer = nil;
                 
                 break;
                 
-                case LSFooterRefresh_HasMoreData:
+            case LSFooterRefresh_HasMoreData:
                 
                 [self.tableView.mj_header endRefreshing];
                 [self.tableView.mj_footer resetNoMoreData];
@@ -84,14 +84,14 @@
                 
                 break;
                 
-                case LSFooterRefresh_HasNoMoreData:
+            case LSFooterRefresh_HasNoMoreData:
                 
                 [self.tableView.mj_header endRefreshing];
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 
                 break;
                 
-                case LSRefreshError:
+            case LSRefreshError:
                 
                 [self.tableView.mj_footer endRefreshing];
                 [self.tableView.mj_header endRefreshing];
@@ -102,6 +102,8 @@
         }
     }];
 }
+
+
 
 - (void)updateConstraints
 {
@@ -142,7 +144,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 100;
+    return 160;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -169,7 +171,7 @@
         
         _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
            
-            [weakSelf.viewModel.nextPageCommand execute:nil];
+            [weakSelf.viewModel.refreshDataCommand execute:nil];
             
         }];
         

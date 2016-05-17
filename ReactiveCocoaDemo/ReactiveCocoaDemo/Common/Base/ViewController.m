@@ -38,45 +38,6 @@
     return viewController;
 }
 
-- (void)hideNavigationBar:(BOOL)isHide
-                 animated:(BOOL)animated{
-    
-    if (animated) {
-        [UIView animateWithDuration:0.25 animations:^{
-            self.navigationController.navigationBarHidden=isHide;
-        }];
-    }
-    else{
-        self.navigationController.navigationBarHidden=isHide;
-    }
-}
-
-
-- (void)layoutNavigationBar:(UIImage*)backGroundImage
-                 titleColor:(UIColor*)titleColor
-                  titleFont:(UIFont*)titleFont
-          leftBarButtonItem:(UIBarButtonItem*)leftItem
-         rightBarButtonItem:(UIBarButtonItem*)rightItem {
-    
-    if (backGroundImage) {
-        [self.navigationController.navigationBar setBackgroundImage:backGroundImage forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    }
-    if (titleColor&&titleFont) {
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:titleColor,NSFontAttributeName:titleFont}];
-    }
-    else if (titleFont) {
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:titleFont}];
-    }
-    else if (titleColor){
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:titleColor}];
-    }
-    if (leftItem) {
-        self.navigationItem.leftBarButtonItem=leftItem;
-    }
-    if (rightItem) {
-        self.navigationItem.rightBarButtonItem=rightItem;
-    }
-}
 
 #pragma mark - RAC
 /**

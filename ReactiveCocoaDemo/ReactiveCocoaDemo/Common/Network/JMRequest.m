@@ -36,7 +36,7 @@
         
          id object = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
         
-       NSLog(@"[JMRequest]: 请求成功 %@",object);
+       NSLog(@" GET  请求成功 ");
         success(self,object);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -59,7 +59,7 @@
         
         id object = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
         
-        NSLog(@"[JMRequest]: 请求成功 %@",object);
+        NSLog(@"[JMRequest]:POST 请求成功 %@",object);
         success(self,object);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

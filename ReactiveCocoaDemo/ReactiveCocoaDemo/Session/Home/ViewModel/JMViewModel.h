@@ -11,19 +11,18 @@
 
 @interface JMViewModel : ViewModel
 
-@property (nonatomic ,strong) JMModel  *model;
-
+@property (nonatomic ,strong) JMModel    *model;
 
 
 @property (nonatomic, strong) RACSubject *refreshEndSubject;
 
 @property (nonatomic, strong) RACSubject *refreshUI;
 
+@property (nonatomic, strong) RACSubject *cellClickSubject;
+
 @property (nonatomic, strong) RACCommand *refreshDataCommand;
 
 @property (nonatomic, strong) RACCommand *nextPageCommand;
-
-@property (nonatomic, strong) RACSubject *cellClickSubject;
 
 @property (nonatomic ,strong) NSMutableArray *dataArray;
 

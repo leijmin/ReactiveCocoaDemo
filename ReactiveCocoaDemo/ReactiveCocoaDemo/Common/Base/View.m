@@ -32,18 +32,6 @@
     return self;
 }
 
-- (void)jm_addReturnKeyBoard {
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
-    tap.numberOfTapsRequired = 1;
-    tap.numberOfTouchesRequired = 1;
-    [tap.rac_gestureSignal subscribeNext:^(id x) {
-        
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        [appDelegate.window endEditing:YES];
-    }];
-    [self addGestureRecognizer:tap];
-}
 
 - (void)jm_bindViewModel {
 }

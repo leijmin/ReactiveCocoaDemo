@@ -12,6 +12,8 @@
 
 @property (nonatomic,retain)UIImageView   *movieImageView;
 
+@property (nonatomic,retain)UIImageView   *backgroundImage;
+
 @property (nonatomic,retain)UILabel       *titleLabel;
 
 @property (nonatomic,retain)UILabel       *ratingLabel;
@@ -25,10 +27,11 @@
 
 - (void)jm_setupViews
 {
-     [self.contentView addSubview:self.movieImageView];
-     [self.contentView addSubview:self.titleLabel];
-     [self.contentView addSubview:self.ratingLabel];
-     [self.contentView addSubview:self.timeLabel];
+    [self.contentView    addSubview:self.backgroundImage];
+    [self.backgroundImage addSubview:self.movieImageView];
+    [self.backgroundImage addSubview:self.titleLabel];
+    [self.backgroundImage addSubview:self.ratingLabel];
+    [self.backgroundImage addSubview:self.timeLabel];
     
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
@@ -40,35 +43,43 @@
 {
     WS(weakSelf)
     
+    
+    [self.backgroundImage mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(weakSelf.contentView).with.offset(15);
+        make.top.equalTo(weakSelf.contentView).with.offset(10);
+        make.right.equalTo(weakSelf.contentView).with.offset(-15);
+        make.bottom.equalTo(weakSelf.contentView);
+  
+    }];
+    
     [self.movieImageView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.size.mas_equalTo(CGSizeMake(40 , 50));
-        make.left.equalTo(weakSelf.contentView).with.offset(5);
-        make.top.equalTo(weakSelf.contentView).with.offset(5);
+        make.left.equalTo(weakSelf.backgroundImage).with.offset(10);
+        make.top.equalTo(weakSelf.backgroundImage).with.offset(5);
+        make.bottom.equalTo(weakSelf.backgroundImage).with.offset(-5);
+        make.width.mas_offset(@100);
         
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.size.mas_equalTo(CGSizeMake(200, 20));
-        make.left.equalTo(weakSelf.contentView).with.offset(50);
-        make.top.equalTo(weakSelf.contentView).with.offset(5);
-
+        
+        make.left.equalTo(weakSelf.movieImageView.mas_right).offset(20);
+        make.bottom.equalTo(weakSelf.ratingLabel.mas_top).with.offset(-40);
         
     }];
-    
+
     [self.ratingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.size.mas_equalTo(CGSizeMake(200, 20));
-        make.left.equalTo(weakSelf.contentView).with.offset(50);
-        make.top.equalTo(weakSelf.contentView).with.offset(30);
-    }];
-    
-    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.movieImageView.mas_right).with.offset(20);
+        make.bottom.equalTo(weakSelf.timeLabel.mas_top).with.offset(-40);
         
-        make.size.mas_equalTo(CGSizeMake(200, 20));
-        make.left.equalTo(weakSelf.contentView).with.offset(50);
-        make.top.equalTo(weakSelf.contentView).with.offset(55);
+        }];
+
+        [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+      
+        make.left.equalTo(weakSelf.movieImageView.mas_right).with.offset(20);
+        make.bottom.equalTo(weakSelf.backgroundImage.mas_bottom).with.offset(-5);
     }];
     
     [super updateConstraints];
@@ -81,7 +92,6 @@
     }
     
     _model = model;
-    
  
     self.titleLabel.text  = model.title;
     self.ratingLabel.text = string(@"评分： ",model.rating);
@@ -97,6 +107,15 @@
         _movieImageView = [[UIImageView alloc]init];
     }
     return _movieImageView;
+}
+
+- (UIImageView *)backgroundImage
+{
+    if (!_backgroundImage) {
+        _backgroundImage = [[UIImageView alloc]init];
+        _backgroundImage.image = [UIImage imageNamed:@"bg_eventlistcell"];
+    }
+    return _backgroundImage;
 }
 
 - (UILabel *)timeLabel

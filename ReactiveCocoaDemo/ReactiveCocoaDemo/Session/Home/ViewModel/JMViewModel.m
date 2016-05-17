@@ -33,7 +33,9 @@
             
         }
         
+        [self.refreshUI sendNext:nil];
         [self.refreshEndSubject sendNext:@(LSFooterRefresh_HasMoreData)];
+        
     }];
 }
 
